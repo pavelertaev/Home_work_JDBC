@@ -4,27 +4,13 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) throws SQLException {
-        final String user = "postgres";
-        final String password = "angelonsky92";
-        final String url = "jdbc:postgresql://localhost:5432/skypro";
+        EmployeeDAO  employeeDAO = new EmployeeDAOImpl();
+        Employee employee1 = new Employee("pav","ert","men",30,1);
 
-
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            EmployeeDAO employeeDAO = new EmployeeDAOImpl(connection);
-
-            City city = new City(1, "Moscow");
-
-
-                Employee employee = new Employee(2,"pav", "pavel", "man", 30, city);
-                employeeDAO.create(employee);
-
-
-            List<Employee> list = new ArrayList<>(employeeDAO.readALl());
-            list.forEach(System.out::println);
-        } catch (SQLException e) {
-            System.out.println("что то пошло не так");
-        }
-
+        employeeDAO.create(employee1);
+        employeeDAO.readALl().forEach(System.out::println);
+        employeeDAO.delete(employee1);
+        employeeDAO.updateAge(employee1);
     }
         }
 
