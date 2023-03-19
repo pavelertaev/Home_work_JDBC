@@ -14,28 +14,21 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private int age;
-    @Column(name = "city_id")
-    private int city;
 
-    public Employee() {
+
+    @ManyToOne()
+    @JoinColumn(name = "city_id")
+    private City city;
+
+    public City getCity() {
+        return city;
     }
 
-    public Employee(String first_name, String last_name, String gender, int age, int city) {
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.gender = gender;
-        this.age = age;
+
+    public void setCity(City city) {
         this.city = city;
     }
 
-    public Employee(int id, String first_name, String last_name, String gender, int age, int city) {
-        this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.gender = gender;
-        this.age = age;
-        this.city = city;
-    }
 
     public int getId() {
         return id;
@@ -77,13 +70,8 @@ public class Employee {
         this.age = age;
     }
 
-    public int getCity() {
-        return city;
-    }
 
-    public void setCity(int city) {
-        this.city = city;
-    }
+
 
     @Override
 
